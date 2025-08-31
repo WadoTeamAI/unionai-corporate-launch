@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UnionAI 法人向けAI研修事業 - 市場分析プレゼンテーション</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Meiryo', sans-serif;
+            line-height: 1.8;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            color: #764ba2;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        header .subtitle {
+            color: #666;
+            font-size: 1.2em;
+        }
+
+        header .date {
+            color: #999;
+            margin-top: 10px;
+        }
+
+        nav {
+            background: white;
+            padding: 15px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 20px;
+            z-index: 100;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+        nav li {
+            margin: 5px;
+        }
+
+        nav a {
+            color: #764ba2;
+            text-decoration: none;
+            padding: 8px 15px;
+            border-radius: 8px;
+            transition: all 0.3s;
+            display: block;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            background: #764ba2;
+            color: white;
+        }
+
+        .section {
+            background: white;
+            padding: 40px;
+            margin-bottom: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            color: #764ba2;
+            font-size: 2em;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #764ba2;
+            display: flex;
+            align-items: center;
+        }
+
+        h2 .icon {
+            margin-right: 15px;
+            font-size: 1.2em;
+        }
+
+        h3 {
+            color: #667eea;
+            font-size: 1.5em;
+            margin: 25px 0 15px;
+            padding-left: 15px;
+            border-left: 4px solid #667eea;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .card {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .card h4 {
+            color: #764ba2;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+
+        .card ul {
+            padding-left: 20px;
+        }
+
+        .card li {
+            margin: 5px 0;
+            color: #555;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 20px 0;
+            box-shadow: 0 10px 30px rgba(103, 126, 234, 0.3);
+        }
+
+        .highlight-box h3 {
+            color: white;
+            border-left-color: white;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .stat-card .number {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #764ba2;
+            display: block;
+        }
+
+        .stat-card .label {
+            color: #666;
+            margin-top: 5px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            overflow-x: auto;
+            display: block;
+        }
+
+        th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        tr:hover {
+            background: #f5f5f5;
+        }
+
+        .feature-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .feature-item {
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 4px solid #764ba2;
+        }
+
+        .feature-item strong {
+            color: #764ba2;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .timeline {
+            position: relative;
+            padding: 20px 0;
+        }
+
+        .timeline-item {
+            display: flex;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .timeline-date {
+            min-width: 150px;
+            font-weight: bold;
+            color: #764ba2;
+        }
+
+        .timeline-content {
+            padding-left: 30px;
+            border-left: 3px solid #667eea;
+            position: relative;
+        }
+
+        .timeline-content::before {
+            content: "";
+            position: absolute;
+            left: -8px;
+            top: 5px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #667eea;
+        }
+
+        .price-table {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin: 30px 0;
+        }
+
+        .price-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 1.3em;
+            font-weight: bold;
+        }
+
+        .price-body {
+            padding: 30px;
+        }
+
+        .price-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .price-item:last-child {
+            border-bottom: none;
+        }
+
+        .price-value {
+            font-weight: bold;
+            color: #764ba2;
+            font-size: 1.2em;
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        .cta-section h2 {
+            color: white;
+            border-bottom: none;
+            justify-content: center;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 40px;
+            background: white;
+            color: #764ba2;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-top: 20px;
+            transition: all 0.3s;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8em;
+            }
+            
+            nav ul {
+                flex-direction: column;
+            }
+            
+            .section {
+                padding: 20px;
+            }
+            
+            table {
+                font-size: 0.9em;
+            }
+        }
+
+        .progress-bar {
+            background: #e0e0e0;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+
+        .progress-fill {
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            color: white;
+            padding: 5px 10px;
+            font-size: 0.9em;
+            white-space: nowrap;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>株式会社UnionAI</h1>
+            <div class="subtitle">法人向けAI研修事業 市場分析・競合分析プレゼンテーション</div>
+            <div class="date">2025年9月1日</div>
+        </header>
+
+        <nav>
+            <ul>
+                <li><a href="#market-needs">市場ニーズ</a></li>
+                <li><a href="#competitors">競合分析</a></li>
+                <li><a href="#trends">市場トレンド</a></li>
+                <li><a href="#concept">商品コンセプト</a></li>
+                <li><a href="#action">アクション</a></li>
+            </ul>
+        </nav>
+
+        <!-- エグゼクティブサマリー -->
+        <section class="section">
+            <h2><span class="icon">📊</span>エグゼクティブサマリー</h2>
+            <div class="highlight-box">
+                <h3>ミッション</h3>
+                <p>「日本のみんなに愛ある毎日を届ける」の理念のもと、実践的なAI活用で企業の生産性を劇的に向上させ、働く人々にゆとりと創造性をもたらす</p>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="number">1億円</span>
+                    <span class="label">2025年12月目標</span>
+                </div>
+                <div class="stat-card">
+                    <span class="number">10.9%</span>
+                    <span class="label">日本企業のAI導入率</span>
+                </div>
+                <div class="stat-card">
+                    <span class="number">1.47兆円</span>
+                    <span class="label">2024年AI市場規模</span>
+                </div>
+                <div class="stat-card">
+                    <span class="number">50%</span>
+                    <span class="label">2025年AI研修導入企業</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- 市場調査とニーズ分析 -->
+        <section id="market-needs" class="section">
+            <h2><span class="icon">🔍</span>市場調査とニーズ分析</h2>
+            
+            <h3>市場ニーズ調査</h3>
+            <div class="card-grid">
+                <div class="card">
+                    <h4>🚨 企業が抱える問題</h4>
+                    <ul>
+                        <li>AI導入率10.9%（米国の半分以下）</li>
+                        <li>社内でのAI活用イメージ不足</li>
+                        <li>AI人材の決定的な不足</li>
+                        <li>経営層の理解不足</li>
+                        <li>実務への適用困難</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h4>💡 顧客のニーズ</h4>
+                    <ul>
+                        <li>全社的なAIリテラシー向上</li>
+                        <li>ビジネス側の人材育成</li>
+                        <li>実践的スキルの習得</li>
+                        <li>自走型組織の構築</li>
+                        <li>測定可能な成果の創出</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h4>🎯 市場の隙間</h4>
+                    <ul>
+                        <li>中小企業向け実践的研修の不足</li>
+                        <li>短期間での成果創出サービス</li>
+                        <li>伴走型支援の欠如</li>
+                        <li>成果保証型サービスの不在</li>
+                        <li>手頃な価格帯の高品質研修</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3>競合サービスの分析</h3>
+            <div style="overflow-x: auto;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>企業名</th>
+                            <th>価格帯</th>
+                            <th>期間</th>
+                            <th>ターゲット</th>
+                            <th>特徴</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>キカガク</strong></td>
+                            <td>79.2万円<br><small>（給付金で実質15万円）</small></td>
+                            <td>6ヶ月</td>
+                            <td>大手企業中心<br>1000社以上実績</td>
+                            <td>オーダーメイド研修<br>卒業後も動画視聴無期限</td>
+                        </tr>
+                        <tr>
+                            <td><strong>AVILEN</strong></td>
+                            <td>9〜25万円<br><small>（75%助成金利用可）</small></td>
+                            <td>最短1日〜</td>
+                            <td>全社員〜専門職<br>約950社実績</td>
+                            <td>東証グロース上場<br>4段階レベル別講座</td>
+                        </tr>
+                        <tr>
+                            <td><strong>スキルアップAI</strong></td>
+                            <td>7〜25万円</td>
+                            <td>4週間〜</td>
+                            <td>エンジニア<br>データサイエンティスト</td>
+                            <td>50以上のレベル別講座<br>実践的PBL重視</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Schoo</strong></td>
+                            <td>1,650円/月<br><small>（1ID、20ID〜）</small></td>
+                            <td>自由</td>
+                            <td>全社員<br>4000社以上実績</td>
+                            <td>9,000本以上の動画<br>21カテゴリ網羅</td>
+                        </tr>
+                        <tr>
+                            <td><strong>DMM生成AI CAMP</strong></td>
+                            <td>個別見積<br><small>（最大70%補助）</small></td>
+                            <td>4〜16週間</td>
+                            <td>新入社員<br>若手社員</td>
+                            <td>10,000名以上育成実績<br>実務80%時間削減実績</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- 市場トレンド分析 -->
+        <section id="trends" class="section">
+            <h2><span class="icon">📈</span>市場トレンド分析</h2>
+            
+            <h3>市場規模と成長予測</h3>
+            <div class="card-grid">
+                <div class="card">
+                    <h4>AI市場全体</h4>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 60%;">2024年: 1.47兆円</div>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 100%;">2028年: 2.78兆円（予測）</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <h4>生成AI市場</h4>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 20%;">2023年: 118.8億円</div>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 100%;">2030年: 1.78兆円（予測）</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <h4>法人研修市場</h4>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 95%;">2024年: 5,800億円</div>
+                    </div>
+                    <p style="margin-top: 10px; color: #666;">オンライン研修が48%（2,800億円）</p>
+                </div>
+            </div>
+
+            <h3>主要トレンド</h3>
+            <div class="feature-list">
+                <div class="feature-item">
+                    <strong>🚀 2025年は「AIエージェント元年」</strong>
+                    企業の生成AI研修導入率が約50%に到達
+                </div>
+                <div class="feature-item">
+                    <strong>💻 オンライン研修の主流化</strong>
+                    全研修の48%がオンライン形式へ移行
+                </div>
+                <div class="feature-item">
+                    <strong>🎯 実践重視への転換</strong>
+                    70%の企業が業務効率化研修を実施
+                </div>
+                <div class="feature-item">
+                    <strong>💰 助成金活用の増加</strong>
+                    人材開発支援助成金で最大60〜80%OFF
+                </div>
+                <div class="feature-item">
+                    <strong>📊 個人利用の急増</strong>
+                    生成AI利用率27.0%（9ヶ月で11.4ポイント増）
+                </div>
+                <div class="feature-item">
+                    <strong>⚡ スキルギャップの拡大</strong>
+                    2〜3年以内に40%拡大の見込み
+                </div>
+            </div>
+        </section>
+
+        <!-- 商品コンセプトの決定 -->
+        <section id="concept" class="section">
+            <h2><span class="icon">💡</span>商品コンセプトの決定</h2>
+            
+            <div class="highlight-box">
+                <h3>UnionAI 独自の価値提案</h3>
+                <p>「我々は、AIを用いて測定可能なビジネス成果を迅速に創出する必要がある企業のための、アジャイルなパートナーです。理論を教えるだけではなく、実践的なワークショップを通じて、貴社の最初のAIプロジェクト成功を伴走支援し、具体的な成果を保証します。」</p>
+            </div>
+
+            <h3>商品特徴とターゲット</h3>
+            <div class="card-grid">
+                <div class="card">
+                    <h4>🎯 ターゲット層</h4>
+                    <ul>
+                        <li><strong>プライマリー:</strong> 中堅・中小企業（50〜500名）</li>
+                        <li><strong>セカンダリー:</strong> 大企業のイノベーション部門</li>
+                        <li>DX推進に意欲的な企業</li>
+                        <li>製造業、サービス業、流通業</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h4>✨ 商品の特徴</h4>
+                    <ul>
+                        <li>3ヶ月間の伴走型支援</li>
+                        <li>実際の業務データを活用</li>
+                        <li>業界特化型カリキュラム</li>
+                        <li>KPI改善率30%保証</li>
+                        <li>6ヶ月間の無料Q&Aサポート</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h4>🔧 解決する問題</h4>
+                    <ul>
+                        <li>理論と実践のギャップ解消</li>
+                        <li>中小企業のAI導入障壁</li>
+                        <li>継続的な学習環境の構築</li>
+                        <li>投資対効果の明確化</li>
+                        <li>社内AI推進体制の確立</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3>サービス構成と価格戦略</h3>
+            <div class="price-table">
+                <div class="price-header">UnionAI 法人向けAI研修サービス</div>
+                <div class="price-body">
+                    <div class="price-item">
+                        <div>
+                            <strong>基本パッケージ（3ヶ月）</strong><br>
+                            <small>AIリテラシー研修 + 部門別カスタマイズ + 成果発表会</small>
+                        </div>
+                        <div class="price-value">100万円</div>
+                    </div>
+                    <div class="price-item">
+                        <div>
+                            <strong>AIクイックウィン・ワークショップ（3日間）</strong><br>
+                            <small>集中実践型、プロトタイプ開発、8名まで</small>
+                        </div>
+                        <div class="price-value">350万円</div>
+                    </div>
+                    <div class="price-item">
+                        <div>
+                            <strong>経営層向けAIブリーフィング（半日）</strong><br>
+                            <small>戦略セッション、ROI分析、ガバナンス理解</small>
+                        </div>
+                        <div class="price-value">75万円</div>
+                    </div>
+                    <div class="price-item">
+                        <div>
+                            <strong>AIスケーリング・プログラム（月額）</strong><br>
+                            <small>継続コーチング、追加プロジェクト支援</small>
+                        </div>
+                        <div class="price-value">200万円/月</div>
+                    </div>
+                </div>
+            </div>
+
+            <h3>差別化ポイント</h3>
+            <div class="feature-list">
+                <div class="feature-item">
+                    <strong>💰 価格戦略</strong>
+                    中小企業でも導入しやすい50〜100万円の価格帯
+                </div>
+                <div class="feature-item">
+                    <strong>🚀 実践重視</strong>
+                    3ヶ月間の伴走型支援で確実な成果を創出
+                </div>
+                <div class="feature-item">
+                    <strong>🎨 カスタマイズ性</strong>
+                    業界特化型の完全オーダーメイドカリキュラム
+                </div>
+                <div class="feature-item">
+                    <strong>✅ 成果保証</strong>
+                    KPI改善率30%保証（未達成時は追加サポート無料）
+                </div>
+                <div class="feature-item">
+                    <strong>🤝 アフターフォロー</strong>
+                    研修後6ヶ月間の無料Q&Aサポート
+                </div>
+                <div class="feature-item">
+                    <strong>📍 地域密着</strong>
+                    地方企業の実情に合わせたサポート体制
+                </div>
+            </div>
+        </section>
+
+        <!-- アクションプラン -->
+        <section id="action" class="section">
+            <h2><span class="icon">🎯</span>今後のアクションプラン</h2>
+            
+            <h3>実施スケジュール</h3>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">2025年9月</div>
+                    <div class="timeline-content">
+                        <strong>短期アクション</strong>
+                        <ul>
+                            <li>価格設定の最終決定</li>
+                            <li>パイロット企業2〜3社の選定</li>
+                            <li>研修コンテンツの開発開始</li>
+                            <li>営業資料・提案書作成</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2025年10月</div>
+                    <div class="timeline-content">
+                        <strong>サービスリリース</strong>
+                        <ul>
+                            <li>講師陣の採用・育成</li>
+                            <li>オンラインプラットフォーム構築</li>
+                            <li>助成金申請サポート体制確立</li>
+                            <li>初期顧客10社獲得</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2025年12月</div>
+                    <div class="timeline-content">
+                        <strong>目標達成</strong>
+                        <ul>
+                            <li>売上1億円達成</li>
+                            <li>顧客満足度90%以上</li>
+                            <li>リピート率60%確保</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <h3>成功のための重要指標（KPI）</h3>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="number">30社</span>
+                    <span class="label">年間新規獲得目標</span>
+                </div>
+                <div class="stat-card">
+                    <span class="number">30%</span>
+                    <span class="label">KPI改善率保証</span>
+                </div>
+                <div class="stat-card">
+                    <span class="number">3ヶ月</span>
+                    <span class="label">成果創出期間</span>
+                </div>
+                <div class="stat-card">
+                    <span class="number">90%</span>
+                    <span class="label">目標満足度</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section class="cta-section">
+            <h2>次回ミーティングでの検討事項</h2>
+            <div style="text-align: left; max-width: 600px; margin: 20px auto;">
+                <p>✅ 本分析を基にした価格設定の最終決定</p>
+                <p>✅ パイロット企業の選定基準策定</p>
+                <p>✅ 研修コンテンツの優先開発順位</p>
+                <p>✅ 営業戦略の具体化</p>
+                <p>✅ リソース確保と役割分担</p>
+            </div>
+            <a href="#" class="btn">プレゼンテーションを開始</a>
+        </section>
+    </div>
+
+    <script>
+        // スムーズスクロール
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // アニメーション効果
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.card, .stat-card, .feature-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.5s, transform 0.5s';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

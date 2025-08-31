@@ -1,0 +1,1130 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UnionAI Business | 法人向け超実践型AI研修</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* AIスクール風のカラーパレット */
+        :root {
+            --primary-purple: #6B46C1;
+            --primary-pink: #EC4899;
+            --dark-bg: #0F172A;
+            --light-purple: #E9D5FF;
+            --text-dark: #1E293B;
+            --text-light: #64748B;
+            --accent-yellow: #FCD34D;
+            --gradient-purple: linear-gradient(135deg, #6B46C1 0%, #EC4899 100%);
+            --gradient-dark: linear-gradient(135deg, #1E293B 0%, #0F172A 100%);
+        }
+
+        body {
+            font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: #ffffff;
+        }
+
+        /* ヘッダー（AIスクール風） */
+        .header {
+            background: var(--dark-bg);
+            padding: 15px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-text {
+            font-size: 24px;
+            font-weight: 900;
+            color: white;
+            letter-spacing: -0.5px;
+        }
+
+        .logo-business {
+            background: var(--gradient-purple);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+
+        .nav {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .nav a {
+            color: rgba(255,255,255,0.9);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav a:hover {
+            color: var(--primary-pink);
+        }
+
+        .header-cta {
+            background: var(--gradient-purple);
+            color: white;
+            padding: 10px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .header-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(236, 72, 153, 0.3);
+        }
+
+        /* ヒーローセクション */
+        .hero {
+            background: var(--gradient-dark);
+            padding: 150px 20px 100px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(236, 72, 153, 0.3) 0%, transparent 70%);
+            top: -200px;
+            right: -100px;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(107, 70, 193, 0.3) 0%, transparent 70%);
+            bottom: -150px;
+            left: -100px;
+            animation: float 15s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(30px, -30px) scale(1.1); }
+        }
+
+        .hero-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(252, 211, 77, 0.2);
+            color: var(--accent-yellow);
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-weight: bold;
+            margin-bottom: 30px;
+            border: 2px solid rgba(252, 211, 77, 0.3);
+        }
+
+        .hero h1 {
+            font-size: 56px;
+            font-weight: 900;
+            color: white;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+
+        .hero h1 .gradient-text {
+            background: linear-gradient(90deg, #FCD34D, #EC4899, #6B46C1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-subtitle {
+            font-size: 20px;
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: var(--gradient-purple);
+            color: white;
+            padding: 18px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 18px;
+            transition: all 0.3s;
+            box-shadow: 0 10px 30px rgba(107, 70, 193, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(107, 70, 193, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid rgba(255,255,255,0.3);
+            padding: 16px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 18px;
+            transition: all 0.3s;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255,255,255,0.1);
+            border-color: rgba(255,255,255,0.5);
+        }
+
+        /* 実績数値セクション */
+        .stats-section {
+            padding: 80px 20px;
+            background: linear-gradient(135deg, #F3E7FC 0%, #FCE7F3 100%);
+        }
+
+        .stats-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 48px;
+            font-weight: 900;
+            background: var(--gradient-purple);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 16px;
+            color: var(--text-light);
+        }
+
+        /* 問題提起セクション */
+        .problem-section {
+            padding: 100px 20px;
+            background: white;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 60px;
+        }
+
+        .section-title {
+            font-size: 42px;
+            font-weight: 900;
+            color: var(--text-dark);
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+
+        .section-title .highlight {
+            background: var(--gradient-purple);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .section-subtitle {
+            font-size: 18px;
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        .problem-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .problem-card {
+            background: #F8FAFC;
+            padding: 30px;
+            border-radius: 20px;
+            border-left: 4px solid var(--primary-pink);
+            transition: all 0.3s;
+        }
+
+        .problem-card:hover {
+            transform: translateX(5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .problem-icon {
+            font-size: 36px;
+            margin-bottom: 15px;
+        }
+
+        .problem-title {
+            font-size: 20px;
+            font-weight: bold;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+        }
+
+        /* 解決策セクション */
+        .solution-section {
+            padding: 100px 20px;
+            background: var(--gradient-dark);
+            color: white;
+        }
+
+        .solution-grid {
+            max-width: 1200px;
+            margin: 60px auto 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+        }
+
+        .solution-card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 40px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s;
+        }
+
+        .solution-card:hover {
+            background: rgba(255,255,255,0.08);
+            transform: translateY(-5px);
+        }
+
+        .solution-number {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            background: var(--gradient-purple);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .solution-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .solution-text {
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        /* 価格セクション */
+        .pricing-section {
+            padding: 100px 20px;
+            background: white;
+        }
+
+        .pricing-container {
+            max-width: 1200px;
+            margin: 60px auto 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+        }
+
+        .pricing-card {
+            background: white;
+            border: 2px solid #E5E7EB;
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .pricing-card.featured {
+            border-color: var(--primary-purple);
+            transform: scale(1.05);
+            box-shadow: 0 20px 60px rgba(107, 70, 193, 0.2);
+        }
+
+        .pricing-card.featured::before {
+            content: 'おすすめ';
+            position: absolute;
+            top: 20px;
+            right: -30px;
+            background: var(--gradient-purple);
+            color: white;
+            padding: 5px 40px;
+            transform: rotate(45deg);
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .pricing-header {
+            background: #F8FAFC;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .pricing-card.featured .pricing-header {
+            background: var(--gradient-purple);
+            color: white;
+        }
+
+        .pricing-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .pricing-subtitle {
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        .pricing-body {
+            padding: 40px 30px;
+        }
+
+        .pricing-price {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .price-amount {
+            font-size: 48px;
+            font-weight: 900;
+            color: var(--primary-purple);
+        }
+
+        .price-unit {
+            font-size: 16px;
+            color: var(--text-light);
+        }
+
+        .price-original {
+            text-decoration: line-through;
+            color: var(--text-light);
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+
+        .pricing-features li {
+            padding: 12px 0;
+            border-bottom: 1px solid #E5E7EB;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .pricing-features li:last-child {
+            border-bottom: none;
+        }
+
+        .check-icon {
+            color: var(--primary-pink);
+            font-weight: bold;
+        }
+
+        .pricing-cta {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background: var(--gradient-purple);
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .pricing-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(107, 70, 193, 0.3);
+        }
+
+        /* カリキュラムセクション */
+        .curriculum-section {
+            padding: 100px 20px;
+            background: #F8FAFC;
+        }
+
+        .curriculum-container {
+            max-width: 1200px;
+            margin: 60px auto 0;
+        }
+
+        .curriculum-tabs {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 40px;
+            justify-content: center;
+        }
+
+        .curriculum-tab {
+            padding: 15px 30px;
+            background: white;
+            border: 2px solid #E5E7EB;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .curriculum-tab.active {
+            background: var(--gradient-purple);
+            color: white;
+            border-color: transparent;
+        }
+
+        .curriculum-content {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .curriculum-list {
+            display: grid;
+            gap: 20px;
+        }
+
+        .curriculum-item {
+            display: flex;
+            gap: 20px;
+            padding: 20px;
+            background: #F8FAFC;
+            border-radius: 15px;
+            transition: all 0.3s;
+        }
+
+        .curriculum-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .curriculum-number {
+            min-width: 40px;
+            height: 40px;
+            background: var(--gradient-purple);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .curriculum-text h4 {
+            color: var(--text-dark);
+            margin-bottom: 5px;
+        }
+
+        .curriculum-text p {
+            color: var(--text-light);
+            font-size: 14px;
+        }
+
+        /* CTA セクション */
+        .cta-section {
+            padding: 100px 20px;
+            background: var(--gradient-purple);
+            text-align: center;
+        }
+
+        .cta-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .cta-title {
+            font-size: 42px;
+            font-weight: 900;
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .cta-text {
+            font-size: 20px;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 40px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-button-primary {
+            background: white;
+            color: var(--primary-purple);
+            padding: 18px 50px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 18px;
+            transition: all 0.3s;
+        }
+
+        .cta-button-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+
+        /* フッター */
+        .footer {
+            background: var(--dark-bg);
+            color: white;
+            padding: 60px 20px 30px;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h4 {
+            margin-bottom: 20px;
+            color: var(--primary-pink);
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column ul li a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-column ul li a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.5);
+        }
+
+        /* レスポンシブ */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .nav {
+                display: none;
+            }
+
+            .pricing-card.featured {
+                transform: scale(1);
+            }
+
+            .curriculum-tabs {
+                flex-direction: column;
+            }
+        }
+
+        /* アニメーション */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- ヘッダー -->
+    <header class="header">
+        <div class="header-container">
+            <div class="logo">
+                <span class="logo-text">UnionAI</span>
+                <span class="logo-business">BUSINESS</span>
+            </div>
+            <nav class="nav">
+                <a href="#features">特徴</a>
+                <a href="#curriculum">カリキュラム</a>
+                <a href="#pricing">料金</a>
+                <a href="#results">導入事例</a>
+            </nav>
+            <a href="#contact" class="header-cta">無料相談予約</a>
+        </div>
+    </header>
+
+    <!-- ヒーロー -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">🚀 2025年10月 サービス開始</div>
+            <h1>
+                研修翌日から<br>
+                <span class="gradient-text">現場が変わる</span><br>
+                超実践型AI研修
+            </h1>
+            <p class="hero-subtitle">
+                座学で終わらない。200個以上の自社専用プロンプトが完成。<br>
+                3ヶ月の伴走支援で、確実に成果を出す。
+            </p>
+            <div class="hero-buttons">
+                <a href="#pricing" class="btn-primary">料金プランを見る</a>
+                <a href="#contact" class="btn-secondary">資料をダウンロード</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 実績数値 -->
+    <section class="stats-section">
+        <div class="stats-container">
+            <div class="stat-card fade-in">
+                <div class="stat-number">30%</div>
+                <div class="stat-label">KPI改善保証</div>
+            </div>
+            <div class="stat-card fade-in">
+                <div class="stat-number">200個+</div>
+                <div class="stat-label">完成するプロンプト</div>
+            </div>
+            <div class="stat-card fade-in">
+                <div class="stat-number">37.5万円</div>
+                <div class="stat-label">助成金適用後の実質負担</div>
+            </div>
+            <div class="stat-card fade-in">
+                <div class="stat-number">3ヶ月</div>
+                <div class="stat-label">完全伴走支援</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 問題提起 -->
+    <section class="problem-section">
+        <div class="section-header">
+            <h2 class="section-title">
+                従来のAI研修では<br>
+                <span class="highlight">成果が出ない理由</span>
+            </h2>
+            <p class="section-subtitle">
+                多くの企業が抱える、AI研修の根本的な問題
+            </p>
+        </div>
+        <div class="problem-grid">
+            <div class="problem-card fade-in">
+                <div class="problem-icon">😰</div>
+                <h3 class="problem-title">実務への適用困難</h3>
+                <p>「いざ作ろうと思うと手が止まる」研修で学んだ知識を実務に適用できない</p>
+            </div>
+            <div class="problem-card fade-in">
+                <div class="problem-icon">📚</div>
+                <h3 class="problem-title">理論偏重</h3>
+                <p>一般的な事例紹介に終始し、自社業務への具体的な適用方法が分からない</p>
+            </div>
+            <div class="problem-card fade-in">
+                <div class="problem-icon">❌</div>
+                <h3 class="problem-title">成果物なし</h3>
+                <p>研修を受けただけでは何も残らず、投資に見合った成果が得られない</p>
+            </div>
+            <div class="problem-card fade-in">
+                <div class="problem-icon">🔧</div>
+                <h3 class="problem-title">実用性の欠如</h3>
+                <p>教えているプロンプトテンプレートが実業務では使えない</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 解決策 -->
+    <section class="solution-section">
+        <div class="section-header">
+            <h2 class="section-title" style="color: white;">
+                UnionAIが提供する<br>
+                <span class="gradient-text">3つの革新</span>
+            </h2>
+            <p class="section-subtitle" style="color: rgba(255,255,255,0.8);">
+                個人向けAIスクールで培った実践ノウハウを法人向けに最適化
+            </p>
+        </div>
+        <div class="solution-grid">
+            <div class="solution-card fade-in">
+                <div class="solution-number">01</div>
+                <h3 class="solution-title">超実践・現場型</h3>
+                <p class="solution-text">
+                    研修中に実際の業務データを使用。講師の添削を受けながら、自社専用プロンプトテンプレートを200個以上作成。研修翌日から即座に活用可能。
+                </p>
+            </div>
+            <div class="solution-card fade-in">
+                <div class="solution-number">02</div>
+                <h3 class="solution-title">成果保証制度</h3>
+                <p class="solution-text">
+                    KPI改善30%を保証。未達成の場合は追加サポート無料。測定可能な成果にコミットし、投資対効果を明確化。
+                </p>
+            </div>
+            <div class="solution-card fade-in">
+                <div class="solution-number">03</div>
+                <h3 class="solution-title">3ヶ月伴走支援</h3>
+                <p class="solution-text">
+                    研修後も3ヶ月間の継続サポート。定期的なメンタリング、Q&A対応、追加プロンプト作成支援で確実な定着を実現。
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 価格 -->
+    <section id="pricing" class="pricing-section">
+        <div class="section-header">
+            <h2 class="section-title">
+                選べる<span class="highlight">3つのプラン</span>
+            </h2>
+            <p class="section-subtitle">
+                企業規模に応じた最適なプランをご用意
+            </p>
+        </div>
+        <div class="pricing-container">
+            <div class="pricing-card fade-in">
+                <div class="pricing-header">
+                    <h3 class="pricing-title">スタートアップ</h3>
+                    <p class="pricing-subtitle">3-9名の少人数向け</p>
+                </div>
+                <div class="pricing-body">
+                    <div class="pricing-price">
+                        <div class="price-original">定価 80万円</div>
+                        <div class="price-amount">20<span class="price-unit">万円</span></div>
+                        <div class="price-unit">助成金適用後（75%OFF）</div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li><span class="check-icon">✓</span> 基本カリキュラム</li>
+                        <li><span class="check-icon">✓</span> 1ヶ月集中プログラム</li>
+                        <li><span class="check-icon">✓</span> プロンプト50個作成</li>
+                        <li><span class="check-icon">✓</span> オンライン研修</li>
+                    </ul>
+                    <a href="#contact" class="pricing-cta">詳細を見る</a>
+                </div>
+            </div>
+
+            <div class="pricing-card featured fade-in">
+                <div class="pricing-header">
+                    <h3 class="pricing-title">スタンダード</h3>
+                    <p class="pricing-subtitle">10-30名の中規模向け</p>
+                </div>
+                <div class="pricing-body">
+                    <div class="pricing-price">
+                        <div class="price-original">定価 150万円</div>
+                        <div class="price-amount">37.5<span class="price-unit">万円</span></div>
+                        <div class="price-unit">助成金適用後（75%OFF）</div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li><span class="check-icon">✓</span> フルカリキュラム</li>
+                        <li><span class="check-icon">✓</span> 3ヶ月伴走支援</li>
+                        <li><span class="check-icon">✓</span> プロンプト200個作成</li>
+                        <li><span class="check-icon">✓</span> KPI改善30%保証</li>
+                        <li><span class="check-icon">✓</span> 対面/オンライン選択可</li>
+                        <li><span class="check-icon">✓</span> 6ヶ月間Q&Aサポート</li>
+                    </ul>
+                    <a href="#contact" class="pricing-cta">無料相談を予約</a>
+                </div>
+            </div>
+
+            <div class="pricing-card fade-in">
+                <div class="pricing-header">
+                    <h3 class="pricing-title">エンタープライズ</h3>
+                    <p class="pricing-subtitle">31名以上の大規模向け</p>
+                </div>
+                <div class="pricing-body">
+                    <div class="pricing-price">
+                        <div class="price-original">定価 200万円〜</div>
+                        <div class="price-amount">50<span class="price-unit">万円〜</span></div>
+                        <div class="price-unit">助成金適用後（75%OFF）</div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li><span class="check-icon">✓</span> カスタマイズ可能</li>
+                        <li><span class="check-icon">✓</span> 3-6ヶ月伴走支援</li>
+                        <li><span class="check-icon">✓</span> 無制限プロンプト作成</li>
+                        <li><span class="check-icon">✓</span> 部門別特化研修</li>
+                        <li><span class="check-icon">✓</span> 経営層向けブリーフィング</li>
+                    </ul>
+                    <a href="#contact" class="pricing-cta">お見積もり依頼</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- カリキュラム -->
+    <section id="curriculum" class="curriculum-section">
+        <div class="section-header">
+            <h2 class="section-title">
+                実践的<span class="highlight">カリキュラム</span>
+            </h2>
+            <p class="section-subtitle">
+                座学と実践を組み合わせた効果的な学習プログラム
+            </p>
+        </div>
+        <div class="curriculum-container">
+            <div class="curriculum-tabs">
+                <div class="curriculum-tab active">e-Learning（12時間）</div>
+                <div class="curriculum-tab">ワークショップ（12時間）</div>
+            </div>
+            <div class="curriculum-content">
+                <div class="curriculum-list">
+                    <div class="curriculum-item fade-in">
+                        <div class="curriculum-number">1</div>
+                        <div class="curriculum-text">
+                            <h4>全体像と目標設定</h4>
+                            <p>研修ゴールの明確化、AI活用による業務改善の全体像を理解</p>
+                        </div>
+                    </div>
+                    <div class="curriculum-item fade-in">
+                        <div class="curriculum-number">2</div>
+                        <div class="curriculum-text">
+                            <h4>生成AIの基礎知識</h4>
+                            <p>ChatGPT、Claude等の主要ツールの特性と使い分け方を習得</p>
+                        </div>
+                    </div>
+                    <div class="curriculum-item fade-in">
+                        <div class="curriculum-number">3</div>
+                        <div class="curriculum-text">
+                            <h4>業界別活用事例</h4>
+                            <p>各業界・業種の実践事例から成功パターンを学習</p>
+                        </div>
+                    </div>
+                    <div class="curriculum-item fade-in">
+                        <div class="curriculum-number">4</div>
+                        <div class="curriculum-text">
+                            <h4>プロンプトエンジニアリング</h4>
+                            <p>効果的な入力方法とテンプレート化の手法を体系的に習得</p>
+                        </div>
+                    </div>
+                    <div class="curriculum-item fade-in">
+                        <div class="curriculum-number">5</div>
+                        <div class="curriculum-text">
+                            <h4>業務への適用方法</h4>
+                            <p>自社の業務へ具体的に落とし込むステップを明確化</p>
+                        </div>
+                    </div>
+                    <div class="curriculum-item fade-in">
+                        <div class="curriculum-number">6</div>
+                        <div class="curriculum-text">
+                            <h4>リスク管理とガバナンス</h4>
+                            <p>データ漏洩防止、誤情報対策など安全な活用方法を理解</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section id="contact" class="cta-section">
+        <div class="cta-content">
+            <h2 class="cta-title">今すぐ無料相談を予約</h2>
+            <p class="cta-text">
+                2025年10月サービス開始。<br>
+                パイロット企業様限定で特別価格（100万円）でご提供
+            </p>
+            <div class="cta-buttons">
+                <a href="mailto:business@unionai.co.jp" class="cta-button-primary">無料相談を予約する</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- フッター -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-column">
+                <h4>UnionAI Business</h4>
+                <p style="color: rgba(255,255,255,0.7); line-height: 1.6;">
+                    個人向けAIスクールで培った<br>
+                    実践ノウハウを法人向けに最適化
+                </p>
+            </div>
+            <div class="footer-column">
+                <h4>サービス</h4>
+                <ul>
+                    <li><a href="#">法人向けAI研修</a></li>
+                    <li><a href="#">経営層向けブリーフィング</a></li>
+                    <li><a href="#">AIチャンピオン育成</a></li>
+                    <li><a href="#">継続サポートプラン</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>会社情報</h4>
+                <ul>
+                    <li><a href="https://aischool.co.jp/">UnionAI（個人向け）</a></li>
+                    <li><a href="#">会社概要</a></li>
+                    <li><a href="#">導入事例</a></li>
+                    <li><a href="#">お問い合わせ</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>お問い合わせ</h4>
+                <ul>
+                    <li style="color: rgba(255,255,255,0.7);">📧 business@unionai.co.jp</li>
+                    <li style="color: rgba(255,255,255,0.7);">📞 0120-XXX-XXXX</li>
+                    <li style="color: rgba(255,255,255,0.7);">営業時間: 平日 9:00-18:00</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 UnionAI. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // スクロールアニメーション
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // カリキュラムタブ切り替え
+        const tabs = document.querySelectorAll('.curriculum-tab');
+        const curriculumData = {
+            0: [
+                {num: 1, title: '全体像と目標設定', desc: '研修ゴールの明確化、AI活用による業務改善の全体像を理解'},
+                {num: 2, title: '生成AIの基礎知識', desc: 'ChatGPT、Claude等の主要ツールの特性と使い分け方を習得'},
+                {num: 3, title: '業界別活用事例', desc: '各業界・業種の実践事例から成功パターンを学習'},
+                {num: 4, title: 'プロンプトエンジニアリング', desc: '効果的な入力方法とテンプレート化の手法を体系的に習得'},
+                {num: 5, title: '業務への適用方法', desc: '自社の業務へ具体的に落とし込むステップを明確化'},
+                {num: 6, title: 'リスク管理とガバナンス', desc: 'データ漏洩防止、誤情報対策など安全な活用方法を理解'}
+            ],
+            1: [
+                {num: 1, title: '業務分解添削', desc: '作成した「業務分解シート」を講師がレビュー、AI活用ポイントを洗い出す'},
+                {num: 2, title: '優先順位の特定', desc: 'ROIが高い業務を特定、すぐ成果の出る業務から順番にAI化'},
+                {num: 3, title: 'プロンプト添削指導', desc: '作成したプロンプトを講師が丁寧にチェック・改善'},
+                {num: 4, title: '実践プロジェクト', desc: '実際の業務データを使用したプロジェクトを実施'},
+                {num: 5, title: '成果発表会', desc: '作成したプロンプトと改善成果を発表、ベストプラクティス共有'},
+                {num: 6, title: '継続計画策定', desc: '研修後の継続的なAI活用計画を策定'}
+            ]
+        };
+
+        tabs.forEach((tab, index) => {
+            tab.addEventListener('click', () => {
+                tabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                
+                const list = document.querySelector('.curriculum-list');
+                list.innerHTML = curriculumData[index].map(item => `
+                    <div class="curriculum-item fade-in visible">
+                        <div class="curriculum-number">${item.num}</div>
+                        <div class="curriculum-text">
+                            <h4>${item.title}</h4>
+                            <p>${item.desc}</p>
+                        </div>
+                    </div>
+                `).join('');
+            });
+        });
+
+        // スムーズスクロール
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offset = 80;
+                    const targetPosition = target.offsetTop - offset;
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

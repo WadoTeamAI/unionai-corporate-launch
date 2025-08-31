@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UnionAI 法人事業戦略MTG | 2025.9.1</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #6B46C1;
+            --secondary: #EC4899;
+            --accent: #10B981;
+            --dark: #1F2937;
+            --light: #F9FAFB;
+            --gradient: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+        }
+
+        body {
+            font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: var(--dark);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        header {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #6B7280;
+            margin-bottom: 2rem;
+        }
+
+        .agenda-pills {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .pill {
+            background: var(--gradient);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .pill:hover {
+            transform: translateY(-2px);
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+        }
+
+        .card h2 {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .competitor-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+
+        .competitor-table th {
+            background: var(--gradient);
+            color: white;
+            padding: 0.75rem;
+            text-align: left;
+            font-size: 0.9rem;
+        }
+
+        .competitor-table td {
+            padding: 0.75rem;
+            border-bottom: 1px solid #E5E7EB;
+            font-size: 0.85rem;
+        }
+
+        .competitor-table tr:hover {
+            background: #F3F4F6;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+            border-left: 4px solid var(--primary);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1rem 0;
+        }
+
+        .price-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .price-card {
+            background: linear-gradient(135deg, #F3F4F6 0%, #E5E7EB 100%);
+            padding: 1.5rem;
+            border-radius: 15px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .price-card.featured {
+            background: var(--gradient);
+            color: white;
+            transform: scale(1.05);
+        }
+
+        .price-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .price-card .price {
+            font-size: 2rem;
+            font-weight: bold;
+            margin: 1rem 0;
+        }
+
+        .price-card .price small {
+            font-size: 0.8rem;
+            display: block;
+            margin-top: 0.5rem;
+            opacity: 0.8;
+        }
+
+        .service-timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .timeline-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 30px;
+            top: 40px;
+            height: 100%;
+            width: 2px;
+            background: var(--gradient);
+        }
+
+        .timeline-item:last-child::before {
+            display: none;
+        }
+
+        .timeline-marker {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            z-index: 1;
+            flex-shrink: 0;
+        }
+
+        .timeline-content {
+            background: #F3F4F6;
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin-left: 2rem;
+            flex: 1;
+        }
+
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .kpi-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            text-align: center;
+            border: 2px solid transparent;
+            background-clip: padding-box;
+            position: relative;
+        }
+
+        .kpi-item::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 15px;
+            padding: 2px;
+            background: var(--gradient);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: exclude;
+            mask-composite: exclude;
+        }
+
+        .kpi-value {
+            font-size: 2.5rem;
+            font-weight: bold;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .kpi-label {
+            color: #6B7280;
+            margin-top: 0.5rem;
+        }
+
+        .action-items {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        .action-item {
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            background: #F9FAFB;
+            transition: all 0.3s;
+        }
+
+        .action-item:hover {
+            background: var(--gradient);
+            color: white;
+            transform: translateX(10px);
+        }
+
+        .action-item input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            margin-right: 1rem;
+        }
+
+        .decision-panel {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        .decision-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .decision-card {
+            padding: 2rem;
+            border-radius: 15px;
+            background: linear-gradient(135deg, #10B98115 0%, #10B98130 100%);
+            border: 2px solid var(--accent);
+        }
+
+        .decision-card h3 {
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .cta-section {
+            background: var(--gradient);
+            color: white;
+            padding: 3rem;
+            border-radius: 20px;
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .cta-section h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-button {
+            background: white;
+            color: var(--primary);
+            padding: 1rem 3rem;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.3s;
+            display: inline-block;
+            margin-top: 1rem;
+        }
+
+        .cta-button:hover {
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 768px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .price-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .kpi-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .decision-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>UnionAI 法人事業戦略MTG</h1>
+            <div class="subtitle">2025年9月1日 | To B事業本格始動の歴史的転換点</div>
+            <div class="agenda-pills">
+                <div class="pill">競合調査結果共有</div>
+                <div class="pill">市場機会特定</div>
+                <div class="pill">商品コンセプト決定</div>
+                <div class="pill">価格戦略決定</div>
+                <div class="pill">ネクストアクション</div>
+            </div>
+        </header>
+
+        <div class="content-grid">
+            <div class="card">
+                <h2>📊 競合5社分析サマリー</h2>
+                <table class="competitor-table">
+                    <thead>
+                        <tr>
+                            <th>企業名</th>
+                            <th>価格帯</th>
+                            <th>期間</th>
+                            <th>強み/弱み</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>キカガク</strong></td>
+                            <td>79.2万円</td>
+                            <td>6ヶ月</td>
+                            <td>✅深いカスタマイズ<br>❌期間が長い</td>
+                        </tr>
+                        <tr>
+                            <td><strong>AVILEN</strong></td>
+                            <td>9-25万円</td>
+                            <td>最短1日</td>
+                            <td>✅東証上場<br>❌実践性が弱い</td>
+                        </tr>
+                        <tr>
+                            <td><strong>スキルアップAI</strong></td>
+                            <td>7-25万円</td>
+                            <td>4週間～</td>
+                            <td>✅実践的PBL<br>❌技術者特化</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Schoo</strong></td>
+                            <td>月1,650円/ID</td>
+                            <td>自由</td>
+                            <td>✅低価格<br>❌伴走支援なし</td>
+                        </tr>
+                        <tr>
+                            <td><strong>DMM</strong></td>
+                            <td>個別見積</td>
+                            <td>4-16週間</td>
+                            <td>✅職種別特化<br>❌価格不透明</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="highlight-box">
+                    <strong>🎯 市場の隙間発見</strong><br>
+                    中小企業（50-500名）向けの実践型研修が不足<br>
+                    50-150万円の適正価格帯にサービスが少ない
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>🚀 UnionAI差別化戦略</h2>
+                <div class="service-timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-marker">1</div>
+                        <div class="timeline-content">
+                            <strong>中小企業特化</strong><br>
+                            50-500名規模の企業に最適化
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">2</div>
+                        <div class="timeline-content">
+                            <strong>成果保証</strong><br>
+                            KPI改善30%を保証（業界初）
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">3</div>
+                        <div class="timeline-content">
+                            <strong>超実践型</strong><br>
+                            研修中にプロンプト200個完成
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">4</div>
+                        <div class="timeline-content">
+                            <strong>適正価格</strong><br>
+                            競合の1/3～1/2の価格設定
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>💴 価格戦略</h2>
+            <div class="price-grid">
+                <div class="price-card">
+                    <h3>パイロット特別価格</h3>
+                    <div class="price">100万円<small>助成金適用後: 25万円</small></div>
+                    <p>限定5社 | 10月限定</p>
+                </div>
+                <div class="price-card featured">
+                    <h3>スタンダード</h3>
+                    <div class="price">150万円<small>助成金適用後: 37.5万円</small></div>
+                    <p>10-30名 | フルサポート</p>
+                </div>
+                <div class="price-card">
+                    <h3>エンタープライズ</h3>
+                    <div class="price">200万円<small>助成金適用後: 50万円</small></div>
+                    <p>31-50名 | カスタマイズ対応</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="kpi-grid">
+            <div class="kpi-item">
+                <div class="kpi-value">1億円</div>
+                <div class="kpi-label">12月売上目標</div>
+            </div>
+            <div class="kpi-item">
+                <div class="kpi-value">55社</div>
+                <div class="kpi-label">必要獲得数</div>
+            </div>
+            <div class="kpi-item">
+                <div class="kpi-value">85%</div>
+                <div class="kpi-label">達成可能性</div>
+            </div>
+            <div class="kpi-item">
+                <div class="kpi-value">30%</div>
+                <div class="kpi-label">KPI改善保証</div>
+            </div>
+        </div>
+
+        <div class="content-grid">
+            <div class="card">
+                <h2>📅 サービス展開ロードマップ</h2>
+                <div class="highlight-box" style="margin-bottom: 1rem;">
+                    <strong>10月: AI研修（メイン商品）</strong><br>
+                    超実践型AI研修でスタート
+                </div>
+                <div class="highlight-box" style="margin-bottom: 1rem;">
+                    <strong>11月: AI戦略コンサル追加</strong><br>
+                    上流支援で単価アップ
+                </div>
+                <div class="highlight-box" style="margin-bottom: 1rem;">
+                    <strong>12月: UnionGPT展開</strong><br>
+                    社内AI環境構築サービス
+                </div>
+                <div class="highlight-box">
+                    <strong>2026年1月以降</strong><br>
+                    開発支援・顧問サービス追加
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>✅ 本日の決定事項</h2>
+                <div class="action-items" style="background: transparent; padding: 0;">
+                    <div class="action-item">
+                        <input type="checkbox" checked>
+                        <span>基本価格150万円の承認</span>
+                    </div>
+                    <div class="action-item">
+                        <input type="checkbox" checked>
+                        <span>パイロット企業5社限定100万円</span>
+                    </div>
+                    <div class="action-item">
+                        <input type="checkbox" checked>
+                        <span>成果保証KPI30%改善</span>
+                    </div>
+                    <div class="action-item">
+                        <input type="checkbox">
+                        <span>パイロット企業3社選定（9/10まで）</span>
+                    </div>
+                    <div class="action-item">
+                        <input type="checkbox">
+                        <span>営業チーム3名採用（9/15まで）</span>
+                    </div>
+                    <div class="action-item">
+                        <input type="checkbox">
+                        <span>Webサイト公開（9/20まで）</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="decision-panel">
+            <h2>🎯 議論・決定事項</h2>
+            <div class="decision-grid">
+                <div class="decision-card">
+                    <h3>商品コンセプト</h3>
+                    <p><strong>「座学で終わらない。研修翌日から現場が変わる」</strong></p>
+                    <ul style="text-align: left; margin-top: 1rem;">
+                        <li>即効性: プロンプト200個</li>
+                        <li>成果保証: KPI30%改善</li>
+                        <li>伴走支援: 3ヶ月継続</li>
+                    </ul>
+                </div>
+                <div class="decision-card">
+                    <h3>ターゲット企業</h3>
+                    <p><strong>中小企業メイン</strong></p>
+                    <ul style="text-align: left; margin-top: 1rem;">
+                        <li>規模: 50-500名</li>
+                        <li>業種: 全業種対応</li>
+                        <li>決裁: 2週間-1ヶ月</li>
+                    </ul>
+                </div>
+                <div class="decision-card">
+                    <h3>役割分担</h3>
+                    <p><strong>チーム体制</strong></p>
+                    <ul style="text-align: left; margin-top: 1rem;">
+                        <li>営業: 島村リーダー</li>
+                        <li>カリキュラム: 鏑木</li>
+                        <li>マーケ: ひより</li>
+                        <li>オペ: ちょこ</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="cta-section">
+            <h2>10月サービス開始に向けて全力疾走！</h2>
+            <p style="font-size: 1.2rem; margin: 1rem 0;">
+                To Cで培った「実践力」と「スピード」を武器に<br>
+                日本の中小企業にAIの力を届けましょう
+            </p>
+            <button class="cta-button" onclick="alert('次回MTG: 9月8日(月) 12:00')">
+                次回MTG日程確認
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Add interactivity
+        document.querySelectorAll('.pill').forEach(pill => {
+            pill.addEventListener('click', function() {
+                const text = this.textContent;
+                const section = document.querySelector(`h2:contains("${text}")`);
+                if (section) {
+                    section.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Animate on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '0';
+                    entry.target.style.transform = 'translateY(20px)';
+                    setTimeout(() => {
+                        entry.target.style.transition = 'all 0.5s ease';
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }, 100);
+                }
+            });
+        });
+
+        document.querySelectorAll('.card').forEach(card => {
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>

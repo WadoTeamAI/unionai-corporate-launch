@@ -1,0 +1,1079 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UnionAI 法人向けAI研修 | 現場で即日成果を出す伴走型実践研修</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #764ba2;
+            --secondary-color: #667eea;
+            --accent-color: #f67599;
+            --text-dark: #2c3e50;
+            --text-light: #6c757d;
+            --bg-light: #f8f9fa;
+            --bg-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        body {
+            font-family: 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Meiryo', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.7;
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        /* ヘッダー */
+        .header {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8em;
+            font-weight: bold;
+            background: var(--bg-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-menu a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-menu a:hover {
+            color: var(--primary-color);
+        }
+
+        .cta-button {
+            background: var(--bg-gradient);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+
+        /* ヒーローセクション */
+        .hero {
+            background: var(--bg-gradient);
+            padding: 100px 20px;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3em;
+            margin-bottom: 30px;
+            opacity: 0.95;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 8px 20px;
+            border-radius: 20px;
+            margin-bottom: 30px;
+            backdrop-filter: blur(10px);
+        }
+
+        /* 問題提起セクション */
+        .problem-section {
+            padding: 80px 20px;
+            background: white;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5em;
+            color: var(--text-dark);
+            margin-bottom: 20px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-light);
+            margin-bottom: 50px;
+            font-size: 1.1em;
+        }
+
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .problem-card {
+            background: var(--bg-light);
+            padding: 30px;
+            border-radius: 15px;
+            border-left: 4px solid var(--accent-color);
+        }
+
+        .problem-card h3 {
+            color: var(--text-dark);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .problem-icon {
+            font-size: 1.5em;
+        }
+
+        /* 特徴セクション */
+        .features-section {
+            padding: 80px 20px;
+            background: var(--bg-light);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--bg-gradient);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-number {
+            background: var(--bg-gradient);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.3em;
+            margin-bottom: 20px;
+        }
+
+        .feature-title {
+            font-size: 1.5em;
+            color: var(--text-dark);
+            margin-bottom: 15px;
+        }
+
+        /* カリキュラムセクション */
+        .curriculum-section {
+            padding: 80px 20px;
+            background: white;
+        }
+
+        .curriculum-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .curriculum-block {
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .curriculum-header {
+            background: var(--bg-gradient);
+            color: white;
+            padding: 20px 30px;
+            font-size: 1.3em;
+            font-weight: bold;
+        }
+
+        .curriculum-content {
+            padding: 30px;
+        }
+
+        .curriculum-item {
+            padding: 15px 0;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .curriculum-item:last-child {
+            border-bottom: none;
+        }
+
+        .curriculum-item h4 {
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+
+        /* 成果セクション */
+        .results-section {
+            padding: 80px 20px;
+            background: var(--bg-light);
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .result-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .result-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+
+        .result-title {
+            color: var(--primary-color);
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        /* 価格セクション */
+        .pricing-section {
+            padding: 80px 20px;
+            background: white;
+        }
+
+        .pricing-container {
+            max-width: 1000px;
+            margin: 50px auto;
+        }
+
+        .pricing-table {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+        }
+
+        .pricing-header {
+            background: var(--bg-gradient);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .pricing-header h3 {
+            font-size: 1.8em;
+            margin-bottom: 10px;
+        }
+
+        .pricing-body {
+            padding: 40px;
+        }
+
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px 0;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .price-row:last-child {
+            border-bottom: none;
+        }
+
+        .price-label {
+            font-weight: 500;
+        }
+
+        .price-value {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .subsidy-info {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 20px;
+            margin-top: 30px;
+            border-radius: 10px;
+        }
+
+        .subsidy-info h4 {
+            color: #856404;
+            margin-bottom: 10px;
+        }
+
+        /* よくある質問 */
+        .faq-section {
+            padding: 80px 20px;
+            background: var(--bg-light);
+        }
+
+        .faq-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: white;
+            margin-bottom: 20px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        }
+
+        .faq-question {
+            padding: 25px 30px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.3s;
+        }
+
+        .faq-question:hover {
+            background: var(--bg-light);
+        }
+
+        .faq-question h4 {
+            color: var(--text-dark);
+            font-size: 1.1em;
+        }
+
+        .faq-answer {
+            padding: 0 30px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s, padding 0.3s;
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 20px 30px 30px;
+            max-height: 500px;
+        }
+
+        .faq-toggle {
+            font-size: 1.5em;
+            color: var(--primary-color);
+            transition: transform 0.3s;
+        }
+
+        .faq-item.active .faq-toggle {
+            transform: rotate(45deg);
+        }
+
+        /* フロー */
+        .flow-section {
+            padding: 80px 20px;
+            background: white;
+        }
+
+        .flow-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .flow-step {
+            display: flex;
+            align-items: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .flow-step::after {
+            content: '';
+            position: absolute;
+            left: 40px;
+            top: 80px;
+            width: 2px;
+            height: calc(100% + 20px);
+            background: #e9ecef;
+        }
+
+        .flow-step:last-child::after {
+            display: none;
+        }
+
+        .flow-number {
+            background: var(--bg-gradient);
+            color: white;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.5em;
+            flex-shrink: 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .flow-content {
+            margin-left: 30px;
+            flex: 1;
+        }
+
+        .flow-content h4 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-size: 1.3em;
+        }
+
+        /* CTA */
+        .cta-section {
+            padding: 100px 20px;
+            background: var(--bg-gradient);
+            text-align: center;
+            color: white;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        .cta-section p {
+            font-size: 1.2em;
+            margin-bottom: 40px;
+            opacity: 0.95;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-primary {
+            background: white;
+            color: var(--primary-color);
+            padding: 18px 50px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1em;
+            transition: all 0.3s;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .cta-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+
+        .cta-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+            padding: 16px 40px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1em;
+            transition: all 0.3s;
+        }
+
+        .cta-secondary:hover {
+            background: white;
+            color: var(--primary-color);
+        }
+
+        /* フッター */
+        footer {
+            background: #2c3e50;
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        footer .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .footer-logo {
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+        }
+
+        /* レスポンシブ */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2em;
+            }
+
+            .curriculum-container {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-menu {
+                display: none;
+            }
+
+            .flow-step {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .flow-step::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+
+            .flow-content {
+                margin-left: 0;
+                margin-top: 20px;
+            }
+        }
+
+        /* アニメーション */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s, transform 0.6s;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* 強調テキスト */
+        .highlight {
+            background: linear-gradient(transparent 60%, #ffd700 60%);
+            font-weight: bold;
+        }
+
+        .text-gradient {
+            background: var(--bg-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <!-- ヘッダー -->
+    <header class="header">
+        <div class="header-container">
+            <div class="logo">UnionAI</div>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="#features">特徴</a></li>
+                    <li><a href="#curriculum">カリキュラム</a></li>
+                    <li><a href="#pricing">料金</a></li>
+                    <li><a href="#faq">よくある質問</a></li>
+                </ul>
+            </nav>
+            <a href="#contact" class="cta-button">無料相談する</a>
+        </div>
+    </header>
+
+    <!-- ヒーローセクション -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">🚀 2025年10月サービス開始</div>
+            <h1>現場で即日成果を出す<br><span class="highlight">「超実践型」AI研修</span></h1>
+            <p class="hero-subtitle">
+                座学で終わらない。研修が終わったその日から<br>
+                現場で使える強力な"伴走型"実践研修です
+            </p>
+            <div class="cta-buttons">
+                <a href="#contact" class="cta-primary">無料相談を予約する</a>
+                <a href="#pricing" class="cta-secondary">料金プランを見る</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 問題提起 -->
+    <section class="problem-section">
+        <div class="container">
+            <h2 class="section-title">従来のAI研修の問題点</h2>
+            <p class="section-subtitle">
+                多くの企業が研修を受けても、実際の業務改善に繋がらない理由があります
+            </p>
+            <div class="problem-grid">
+                <div class="problem-card fade-in">
+                    <h3><span class="problem-icon">😔</span> 研修後の壁</h3>
+                    <p>「いざ作ろうと思うと手が止まる」「現場での活用シーンが思いつかない」など、研修で学んだ知識を実務に適用できない</p>
+                </div>
+                <div class="problem-card fade-in">
+                    <h3><span class="problem-icon">📚</span> 理論偏重</h3>
+                    <p>一般的な事例紹介や理論的な知識に偏り、自社の具体的な業務への適用方法が分からない</p>
+                </div>
+                <div class="problem-card fade-in">
+                    <h3><span class="problem-icon">❌</span> 成果なし</h3>
+                    <p>研修を受けただけでは特にアウトプットが残らず、投資に見合った成果が得られない</p>
+                </div>
+                <div class="problem-card fade-in">
+                    <h3><span class="problem-icon">🔧</span> 実用性の欠如</h3>
+                    <p>多くのAI研修で教えているプロンプトテンプレートは、実業務では使われない重大な欠点が存在する</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 特徴セクション -->
+    <section id="features" class="features-section">
+        <div class="container">
+            <h2 class="section-title">UnionAI研修の<span class="text-gradient">3つの特徴</span></h2>
+            <p class="section-subtitle">
+                なぜ、UnionAIは「本質の生成AI研修」が可能なのか？
+            </p>
+            <div class="features-grid">
+                <div class="feature-card fade-in">
+                    <div class="feature-number">01</div>
+                    <h3 class="feature-title">超実践・現場型</h3>
+                    <p>豊富なアウトプット機会を用意。ワークを提出するだけで<strong>自社用プロンプトテンプレートが数百個完成</strong>します。研修中に実際の業務データを使用し、即座に現場で活用可能な成果物を作成。</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-number">02</div>
+                    <h3 class="feature-title">現場最適なカリキュラム</h3>
+                    <p>生産性向上という成果から逆算し、<strong>最も必要十分で最適なカリキュラムを編成</strong>。「全ての業務に適用可能」なスキルを身につけ、AI化できる余地を自ら発見し行動できる組織づくりを実現。</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-number">03</div>
+                    <h3 class="feature-title">助成金で実質25%負担</h3>
+                    <p>人材開発支援助成金の適用により<strong>最大75%の助成が可能</strong>。中小企業でも導入しやすい価格設定で、高品質な研修をリーズナブルに受講いただけます。提携社労士法人が申請を完全サポート。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- カリキュラム -->
+    <section id="curriculum" class="curriculum-section">
+        <div class="container">
+            <h2 class="section-title">実践的カリキュラム</h2>
+            <p class="section-subtitle">
+                座学と実践を組み合わせ、研修後にはすぐ業務に取り入れられる<br>
+                具体的なナレッジとスキルを習得していただけます
+            </p>
+            <div class="curriculum-container">
+                <div class="curriculum-block fade-in">
+                    <div class="curriculum-header">
+                        📚 e-Learning / オンライン研修（12時間）
+                    </div>
+                    <div class="curriculum-content">
+                        <div class="curriculum-item">
+                            <h4>1. 全体像</h4>
+                            <p>研修ゴールの明確化、意識付け</p>
+                        </div>
+                        <div class="curriculum-item">
+                            <h4>2. 生成AIとは</h4>
+                            <p>仕組みやモデルの概要、ChatGPT等主要ツールの特性</p>
+                        </div>
+                        <div class="curriculum-item">
+                            <h4>3. 様々な活用事例</h4>
+                            <p>各業界・業種の実践事例から学ぶ成功ポイント</p>
+                        </div>
+                        <div class="curriculum-item">
+                            <h4>4. リスクと注意</h4>
+                            <p>データ漏洩や誤情報、AI活用時の注意点</p>
+                        </div>
+                        <div class="curriculum-item">
+                            <h4>5. プロンプトエンジニアリング</h4>
+                            <p>効果的な入力方法やテンプレート化の手法を体系的に学習</p>
+                        </div>
+                        <div class="curriculum-item">
+                            <h4>6. 業務への適用方法</h4>
+                            <p>自社の業務へ具体的に落とし込むステップを明確化</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="curriculum-block fade-in">
+                    <div class="curriculum-header">
+                        🛠️ ワークショップ（12時間）
+                    </div>
+                    <div class="curriculum-content">
+                        <div class="curriculum-item">
+                            <h4>1. 業務分解添削</h4>
+                            <p>作成した「業務分解シート」を講師がレビュー。具体的な改善提案で、最終的なAI活用ポイントを洗い出す</p>
+                        </div>
+                        <div class="curriculum-item">
+                            <h4>2. 優先順位の特定ワークショップ</h4>
+                            <p>洗い出した業務リストから、ROIが高い業務を特定。「すぐ成果の出る業務」から順番にAI化を進める戦略づくり</p>
+                        </div>
+                        <div class="curriculum-item">
+                            <h4>3. プロンプトのFB・添削指導</h4>
+                            <p>受講者が作成したプロンプトテンプレを講師が丁寧にチェック・改善。エラー原因や改善点を具体的に提示し、精度と再現性を高める</p>
+                        </div>
+                        <div class="curriculum-item">
+                            <h4>4. 実践プロジェクト</h4>
+                            <p>実際の業務データを使用したプロジェクトを実施。研修期間中に具体的な成果物を作成</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 成果 -->
+    <section class="results-section">
+        <div class="container">
+            <h2 class="section-title">研修後の<span class="text-gradient">具体的な成果</span></h2>
+            <p class="section-subtitle">
+                研修終了時点で、以下の成果が確実に得られます
+            </p>
+            <div class="results-grid">
+                <div class="result-card fade-in">
+                    <div class="result-icon">📝</div>
+                    <div class="result-title">プロンプトテンプレート数百個完成</div>
+                    <p>研修内で講師の添削を受けながら実際に作成。すぐ使えるテンプレートが豊富に揃います</p>
+                </div>
+                <div class="result-card fade-in">
+                    <div class="result-icon">🔍</div>
+                    <div class="result-title">AI化できる余地を自ら発見</div>
+                    <p>「この業務もAI化できるのでは？」という視点が自然と身につき、継続的な改善が可能に</p>
+                </div>
+                <div class="result-card fade-in">
+                    <div class="result-icon">🎯</div>
+                    <div class="result-title">全業務への適用スキル</div>
+                    <p>特定業務だけでなく「どこにでも使える」汎用的なAI活用スキルを獲得</p>
+                </div>
+                <div class="result-card fade-in">
+                    <div class="result-icon">📈</div>
+                    <div class="result-title">KPI改善30%保証</div>
+                    <p>業務時間削減、生産性向上など、測定可能な成果を保証。未達成時は追加サポート無料</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 価格 -->
+    <section id="pricing" class="pricing-section">
+        <div class="container">
+            <h2 class="section-title">料金プラン</h2>
+            <p class="section-subtitle">
+                助成金活用で実質負担額が大幅に削減されます
+            </p>
+            <div class="pricing-container">
+                <div class="pricing-table">
+                    <div class="pricing-header">
+                        <h3>UnionAI 超実践型AI研修</h3>
+                        <p>中小企業向け特別プラン</p>
+                    </div>
+                    <div class="pricing-body">
+                        <div class="price-row">
+                            <div class="price-label">
+                                <strong>基本パッケージ</strong><br>
+                                <small>e-Learning + ワークショップ + 3ヶ月伴走支援</small>
+                            </div>
+                            <div class="price-value">100万円</div>
+                        </div>
+                        <div class="price-row">
+                            <div class="price-label">
+                                <strong>受講人数</strong><br>
+                                <small>最大30名まで同一料金</small>
+                            </div>
+                            <div class="price-value">30名まで</div>
+                        </div>
+                        <div class="price-row">
+                            <div class="price-label">
+                                <strong>期間</strong><br>
+                                <small>集中2日間〜3ヶ月間で柔軟に対応</small>
+                            </div>
+                            <div class="price-value">最大3ヶ月</div>
+                        </div>
+                        <div class="subsidy-info">
+                            <h4>🎯 助成金適用で実質負担額</h4>
+                            <p><strong>中小企業：25万円</strong>（助成率75%）</p>
+                            <p><strong>中小企業以外：40万円</strong>（助成率60%）</p>
+                            <p style="margin-top: 10px; font-size: 0.9em;">※提携社労士法人が申請手続きを完全サポート</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="faq-section">
+        <div class="container">
+            <h2 class="section-title">よくある質問</h2>
+            <div class="faq-container">
+                <div class="faq-item fade-in">
+                    <div class="faq-question">
+                        <h4>Q. 研修受講後は何ができるようになりますか？</h4>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>研修完了時点で「AIが適用できる業務を自分自身で判断する」「各種業務にAIを適用するための実際のプロンプトを作り込む」ことができるようになります。また、受講するだけで実際の現場業務への自社用プロンプトテンプレが数百個完成するため、教育より活用事例創出のための施策として捉えていただくこともできます。</p>
+                    </div>
+                </div>
+                <div class="faq-item fade-in">
+                    <div class="faq-question">
+                        <h4>Q. どのような部門・職種に有効ですか？</h4>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>全ての職種に適用可能なナレッジをご提供します。営業、マーケティング、経理、人事、製造、開発など、あらゆる部門で活用いただけます。職種特化型の研修もカスタマイズ研修として実施可能ですのでご相談ください。</p>
+                    </div>
+                </div>
+                <div class="faq-item fade-in">
+                    <div class="faq-question">
+                        <h4>Q. 他社のAI研修との違いは何ですか？</h4>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>最大の違いは「現場での即効性」です。研修中に実際の業務データを使い、講師の添削を受けながら自社専用のプロンプトを作成します。また、3ヶ月間の伴走支援により、研修後も継続的な改善をサポート。成果保証（KPI改善30%）も他社にはない特徴です。</p>
+                    </div>
+                </div>
+                <div class="faq-item fade-in">
+                    <div class="faq-question">
+                        <h4>Q. 助成金申請は大変でしょうか？</h4>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>提携の社労士法人が書類作成や提出手続きを代行するため、貴社のご負担は最小限に抑えられます。申請から約1ヶ月で研修開始が可能です。</p>
+                    </div>
+                </div>
+                <div class="faq-item fade-in">
+                    <div class="faq-question">
+                        <h4>Q. 研修期間はどのくらいですか？</h4>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>貴社のご都合に合わせて柔軟に対応可能です。2日間の集中開催から、週1回×3ヶ月の段階的開催まで、業務への影響を最小限に抑えながら実施できます。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 導入フロー -->
+    <section class="flow-section">
+        <div class="container">
+            <h2 class="section-title">ご契約までの流れ</h2>
+            <div class="flow-container">
+                <div class="flow-step fade-in">
+                    <div class="flow-number">1</div>
+                    <div class="flow-content">
+                        <h4>お問い合わせ</h4>
+                        <p>お電話やお問い合わせフォームからご連絡ください。24時間以内にご連絡差し上げます。</p>
+                    </div>
+                </div>
+                <div class="flow-step fade-in">
+                    <div class="flow-number">2</div>
+                    <div class="flow-content">
+                        <h4>現状ヒアリング</h4>
+                        <p>既存のAI活用状況や研修ニーズを詳細にヒアリングし、最適なカリキュラムをご提案します。</p>
+                    </div>
+                </div>
+                <div class="flow-step fade-in">
+                    <div class="flow-number">3</div>
+                    <div class="flow-content">
+                        <h4>ご提案・お見積もり</h4>
+                        <p>ご要望・目標に合わせた研修内容、スケジュール、費用をまとめたプランを提示します。</p>
+                    </div>
+                </div>
+                <div class="flow-step fade-in">
+                    <div class="flow-number">4</div>
+                    <div class="flow-content">
+                        <h4>ご契約・助成金申請</h4>
+                        <p>助成金を活用される場合は、必要書類の準備を提携社労士法人がサポートします。</p>
+                    </div>
+                </div>
+                <div class="flow-step fade-in">
+                    <div class="flow-number">5</div>
+                    <div class="flow-content">
+                        <h4>研修開始</h4>
+                        <p>e-Learningやワークショップを通じて、実務に直結する生成AIスキルを習得していただきます。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section id="contact" class="cta-section">
+        <div class="container">
+            <h2>今すぐ無料相談を予約</h2>
+            <p>
+                2025年10月サービス開始に向けて、先行予約を受付中<br>
+                パイロット企業様には特別価格でご提供します
+            </p>
+            <div class="cta-buttons">
+                <a href="mailto:contact@unionai.co.jp" class="cta-primary">無料相談を予約する</a>
+                <a href="tel:0120-xxx-xxxx" class="cta-secondary">電話で問い合わせる</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- フッター -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">UnionAI</div>
+                <ul class="footer-links">
+                    <li><a href="#">会社概要</a></li>
+                    <li><a href="#">プライバシーポリシー</a></li>
+                    <li><a href="#">お問い合わせ</a></li>
+                </ul>
+            </div>
+            <p style="margin-top: 20px; opacity: 0.7;">© 2025 UnionAI. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // FAQトグル
+        document.querySelectorAll('.faq-question').forEach(item => {
+            item.addEventListener('click', () => {
+                const parent = item.parentElement;
+                parent.classList.toggle('active');
+            });
+        });
+
+        // スクロールアニメーション
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // スムーズスクロール
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
