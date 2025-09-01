@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI研修市場分析レポート | 経営者の悩みと市場機会</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #1E40AF;
+            --secondary: #DC2626;
+            --success: #059669;
+            --warning: #D97706;
+            --info: #0891B2;
+            --dark: #111827;
+            --light: #F9FAFB;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(180deg, #EFF6FF 0%, #DBEAFE 100%);
+            min-height: 100vh;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        header {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #1E40AF 0%, #DC2626 50%, #059669 100%);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #6B7280;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #F0F9FF 0%, #E0F2FE 100%);
+            padding: 1.5rem;
+            border-radius: 15px;
+            text-align: center;
+            border: 2px solid #BFDBFE;
+        }
+
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .stat-label {
+            color: #6B7280;
+            margin-top: 0.5rem;
+        }
+
+        .section {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .pain-points-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .pain-card {
+            background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%);
+            border: 2px solid #F59E0B;
+            border-radius: 15px;
+            padding: 2rem;
+            position: relative;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .pain-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 60px rgba(245, 158, 11, 0.3);
+        }
+
+        .pain-card h3 {
+            color: #92400E;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .pain-card ul {
+            list-style: none;
+        }
+
+        .pain-card li {
+            margin-bottom: 0.8rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .pain-card li::before {
+            content: '⚠️';
+            position: absolute;
+            left: 0;
+        }
+
+        .solution-card {
+            background: linear-gradient(135deg, #D1FAE5 0%, #A7F3D0 100%);
+            border: 2px solid #10B981;
+            border-radius: 15px;
+            padding: 2rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .solution-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 60px rgba(16, 185, 129, 0.3);
+        }
+
+        .solution-card h3 {
+            color: #065F46;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .solution-card li::before {
+            content: '✅';
+        }
+
+        .market-data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 2rem;
+        }
+
+        .market-data-table th {
+            background: linear-gradient(135deg, #1E40AF 0%, #3B82F6 100%);
+            color: white;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .market-data-table td {
+            padding: 1rem;
+            border-bottom: 1px solid #E5E7EB;
+        }
+
+        .market-data-table tr:hover {
+            background: #F3F4F6;
+        }
+
+        .market-data-table tr:nth-child(even) {
+            background: #F9FAFB;
+        }
+
+        .competitor-analysis {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .competitor-card {
+            background: white;
+            border: 2px solid #E5E7EB;
+            border-radius: 15px;
+            padding: 1.5rem;
+            transition: all 0.3s;
+        }
+
+        .competitor-card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 10px 30px rgba(30, 64, 175, 0.1);
+        }
+
+        .competitor-name {
+            font-weight: bold;
+            color: var(--primary);
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .competitor-price {
+            color: var(--secondary);
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .competitor-details {
+            color: #6B7280;
+            font-size: 0.9rem;
+        }
+
+        .market-opportunity {
+            background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%);
+            border: 3px solid #F59E0B;
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .market-opportunity h3 {
+            color: #92400E;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .opportunity-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .opportunity-item {
+            background: white;
+            padding: 1rem;
+            border-radius: 10px;
+        }
+
+        .opportunity-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #D97706;
+        }
+
+        .insight-box {
+            background: linear-gradient(135deg, #EDE9FE 0%, #DDD6FE 100%);
+            border-left: 5px solid #7C3AED;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+        }
+
+        .insight-box h4 {
+            color: #5B21B6;
+            margin-bottom: 1rem;
+        }
+
+        .timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, #1E40AF 0%, #DC2626 100%);
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 80px;
+            margin-bottom: 2rem;
+        }
+
+        .timeline-marker {
+            position: absolute;
+            left: 35px;
+            width: 30px;
+            height: 30px;
+            background: white;
+            border: 3px solid var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .timeline-content {
+            background: #F3F4F6;
+            padding: 1.5rem;
+            border-radius: 10px;
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, #1E40AF 0%, #3B82F6 100%);
+            color: white;
+            padding: 3rem;
+            border-radius: 20px;
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .cta-section h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-button {
+            background: white;
+            color: var(--primary);
+            padding: 1rem 3rem;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.3s;
+            display: inline-block;
+            margin-top: 1rem;
+            text-decoration: none;
+        }
+
+        .cta-button:hover {
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 768px) {
+            .pain-points-grid,
+            .opportunity-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .competitor-analysis {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🔍 AI研修市場分析レポート</h1>
+            <div class="subtitle">経営者が抱える4大課題と巨大な市場機会</div>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-value">1.47兆円</div>
+                    <div class="stat-label">AI市場規模（2024年）</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">84.4%</div>
+                    <div class="stat-label">生成AI市場CAGR</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">10.9%</div>
+                    <div class="stat-label">日本企業AI導入率</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">79万人</div>
+                    <div class="stat-label">2030年AI人材不足</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">10万社</div>
+                    <div class="stat-label">ターゲット企業数</div>
+                </div>
+            </div>
+        </header>
+
+        <section class="section">
+            <h2 class="section-title">🚨 経営者が抱える4大課題（市場調査結果）</h2>
+            
+            <div class="pain-points-grid">
+                <div class="pain-card">
+                    <h3>1. 知識・理解の壁</h3>
+                    <ul>
+                        <li>AIで何ができるのか具体的にイメージできない</li>
+                        <li>専門用語（機械学習、ディープラーニング等）の壁</li>
+                        <li>多種多様なツールから最適なものを選定できない</li>
+                        <li>自社ビジネスへの活用方法が不明確</li>
+                    </ul>
+                </div>
+
+                <div class="pain-card">
+                    <h3>2. 導入・活用の課題</h3>
+                    <ul>
+                        <li>初期投資50-200万円の負担（中小企業には重い）</li>
+                        <li>投資対効果（ROI）が不透明で決断できない</li>
+                        <li>データ未整備・品質問題（散在・欠損）</li>
+                        <li>セキュリティ・情報漏洩リスクへの懸念</li>
+                    </ul>
+                </div>
+
+                <div class="pain-card">
+                    <h3>3. 組織・人材不足</h3>
+                    <ul>
+                        <li>AI専門人材が社内に不在（採用も困難）</li>
+                        <li>従業員の抵抗感「仕事を奪われる」不安</li>
+                        <li>全社的なAIリテラシー教育体制の欠如</li>
+                        <li>経営層と現場の意識の乖離</li>
+                    </ul>
+                </div>
+
+                <div class="pain-card">
+                    <h3>4. 経営戦略の悩み</h3>
+                    <ul>
+                        <li>明確なAI活用ビジョンの欠如</li>
+                        <li>PoC（概念実証）止まりで本格展開できない</li>
+                        <li>AI判断の責任所在・ガバナンス体制が不明</li>
+                        <li>短期業績プレッシャーとの両立困難</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="insight-box">
+                <h4>📊 重要な発見</h4>
+                <p><strong>「どの業務から始めればよいのか」「費用対効果が本当にあるのか」「社員が使いこなせるのか」</strong>の3点が最も多い悩みです。<br>
+                特に中小企業では、これらの課題がAI導入の大きな障壁となっており、適切な支援が求められています。</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">📈 市場規模と成長性分析</h2>
+            
+            <table class="market-data-table">
+                <thead>
+                    <tr>
+                        <th>市場セグメント</th>
+                        <th>2024年規模</th>
+                        <th>2028年予測</th>
+                        <th>CAGR</th>
+                        <th>特記事項</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>AI市場全体</strong></td>
+                        <td>1兆4,735億円</td>
+                        <td>2兆7,780億円</td>
+                        <td>29.1%</td>
+                        <td>急成長継続</td>
+                    </tr>
+                    <tr>
+                        <td><strong>生成AI市場</strong></td>
+                        <td>1,016億円</td>
+                        <td>8,028億円</td>
+                        <td>84.4%</td>
+                        <td>初の1,000億円突破</td>
+                    </tr>
+                    <tr>
+                        <td><strong>企業研修市場</strong></td>
+                        <td>228.9億ドル</td>
+                        <td>425.8億ドル</td>
+                        <td>7.14%</td>
+                        <td>AI研修需要増</td>
+                    </tr>
+                    <tr>
+                        <td><strong>eラーニング市場</strong></td>
+                        <td>3,800億円</td>
+                        <td>3,849億円（2025）</td>
+                        <td>1.0%</td>
+                        <td>人的資本開示が追い風</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="market-opportunity">
+                <h3>🎯 巨大な市場機会</h3>
+                <div class="opportunity-grid">
+                    <div class="opportunity-item">
+                        <div class="opportunity-value">89.1%</div>
+                        <div>未導入企業の割合</div>
+                    </div>
+                    <div class="opportunity-item">
+                        <div class="opportunity-value">20倍</div>
+                        <div>2030年市場規模（2023年比）</div>
+                    </div>
+                    <div class="opportunity-item">
+                        <div class="opportunity-value">75%</div>
+                        <div>助成金補助率（中小企業）</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">🏢 競合分析（主要プレイヤー）</h2>
+            
+            <div class="competitor-analysis">
+                <div class="competitor-card">
+                    <div class="competitor-name">キカガク</div>
+                    <div class="competitor-price">7.7万円</div>
+                    <div class="competitor-details">
+                        <strong>実績:</strong> 1,000社15万人<br>
+                        <strong>強み:</strong> カスタマイズ性<br>
+                        <strong>弱み:</strong> 6ヶ月と期間が長い
+                    </div>
+                </div>
+
+                <div class="competitor-card">
+                    <div class="competitor-name">AVILEN</div>
+                    <div class="competitor-price">1.1万円〜</div>
+                    <div class="competitor-details">
+                        <strong>実績:</strong> 700社以上<br>
+                        <strong>強み:</strong> 東証上場・体系的<br>
+                        <strong>弱み:</strong> 実践性が弱い
+                    </div>
+                </div>
+
+                <div class="competitor-card">
+                    <div class="competitor-name">DMM生成AI CAMP</div>
+                    <div class="competitor-price">19.8万円〜</div>
+                    <div class="competitor-details">
+                        <strong>実績:</strong> 120社1,000名<br>
+                        <strong>強み:</strong> 職種別コース<br>
+                        <strong>弱み:</strong> 価格が高い
+                    </div>
+                </div>
+
+                <div class="competitor-card">
+                    <div class="competitor-name">トレノケート</div>
+                    <div class="competitor-price">3,300円〜14.3万円</div>
+                    <div class="competitor-details">
+                        <strong>実績:</strong> 1,500社顧客<br>
+                        <strong>強み:</strong> グローバル実績<br>
+                        <strong>弱み:</strong> 体系性不足
+                    </div>
+                </div>
+
+                <div class="competitor-card">
+                    <div class="competitor-name">NOB DATA</div>
+                    <div class="competitor-price">200万円〜</div>
+                    <div class="competitor-details">
+                        <strong>実績:</strong> カスタム研修<br>
+                        <strong>強み:</strong> 高度カスタマイズ<br>
+                        <strong>弱み:</strong> 中小企業には高額
+                    </div>
+                </div>
+
+                <div class="competitor-card">
+                    <div class="competitor-name">スキルアップAI</div>
+                    <div class="competitor-price">2.75万円</div>
+                    <div class="competitor-details">
+                        <strong>実績:</strong> GUGA認定資格<br>
+                        <strong>強み:</strong> 資格取得支援<br>
+                        <strong>弱み:</strong> エンジニア特化
+                    </div>
+                </div>
+            </div>
+
+            <div class="insight-box">
+                <h4>💡 競合分析から見える市場ギャップ</h4>
+                <p>• <strong>価格帯の空白:</strong> 50-150万円の中価格帯にサービスが少ない<br>
+                • <strong>ターゲットの偏り:</strong> 大企業向けか個人向けが多く、中小企業向けが手薄<br>
+                • <strong>成果保証の欠如:</strong> どの競合も明確な成果保証を提供していない<br>
+                • <strong>期間の問題:</strong> 6ヶ月は長すぎ、1日は短すぎる（3ヶ月が最適）</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">💡 UnionAIの市場参入戦略</h2>
+            
+            <div class="pain-points-grid">
+                <div class="solution-card">
+                    <h3>知識・理解の壁を解消</h3>
+                    <ul>
+                        <li>専門用語を使わない実践教育</li>
+                        <li>自社業務に即したプロンプト200個作成</li>
+                        <li>最適ツール選定を伴走支援</li>
+                        <li>業界別カスタマイズで即活用</li>
+                    </ul>
+                </div>
+
+                <div class="solution-card">
+                    <h3>導入・活用を確実に</h3>
+                    <ul>
+                        <li>KPI30%改善を成果保証（業界初）</li>
+                        <li>助成金活用で実質37.5万円</li>
+                        <li>データ整備から支援</li>
+                        <li>セキュリティ対策込み</li>
+                    </ul>
+                </div>
+
+                <div class="solution-card">
+                    <h3>人材育成を実現</h3>
+                    <ul>
+                        <li>3ヶ月で社内AI人材育成</li>
+                        <li>従業員の不安を解消する説明会</li>
+                        <li>全社員向け段階的プログラム</li>
+                        <li>継続的なメンタリング体制</li>
+                    </ul>
+                </div>
+
+                <div class="solution-card">
+                    <h3>経営戦略を支援</h3>
+                    <ul>
+                        <li>AI活用ビジョン策定支援</li>
+                        <li>PoCから本格展開まで伴走</li>
+                        <li>ガバナンス体制構築支援</li>
+                        <li>ROI測定・改善サイクル確立</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">📅 業界別AI導入状況と機会</h2>
+            
+            <table class="market-data-table">
+                <thead>
+                    <tr>
+                        <th>業界</th>
+                        <th>導入率</th>
+                        <th>主な活用領域</th>
+                        <th>UnionAIの機会</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>情報通信業</strong></td>
+                        <td>35.1%</td>
+                        <td>ソフトウェア開発支援、自動化</td>
+                        <td>高度化ニーズ対応</td>
+                    </tr>
+                    <tr>
+                        <td><strong>金融・保険業</strong></td>
+                        <td>29.0%</td>
+                        <td>リスク評価、不正検知、コンプライアンス</td>
+                        <td>規制対応支援</td>
+                    </tr>
+                    <tr style="background: #FEF3C7;">
+                        <td><strong>製造業</strong></td>
+                        <td>22.9%</td>
+                        <td>設計・開発、生産最適化、品質管理</td>
+                        <td><strong>最大の成長機会</strong></td>
+                    </tr>
+                    <tr>
+                        <td><strong>小売・流通業</strong></td>
+                        <td>13.4%</td>
+                        <td>需要予測、在庫管理、パーソナライゼーション</td>
+                        <td>導入初期支援</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">🚀 成功への道筋</h2>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-marker">1</div>
+                    <div class="timeline-content">
+                        <strong>2025年9月：市場参入</strong><br>
+                        パイロット5社で実績作り（100万円特別価格）
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-marker">2</div>
+                    <div class="timeline-content">
+                        <strong>2025年10月：本格展開</strong><br>
+                        成功事例を武器に営業加速（月15社獲得）
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-marker">3</div>
+                    <div class="timeline-content">
+                        <strong>2025年12月：目標達成</strong><br>
+                        売上1億円達成（55社獲得）
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-marker">4</div>
+                    <div class="timeline-content">
+                        <strong>2026年：市場リーダーへ</strong><br>
+                        中小企業向けAI研修のNo.1ブランド確立
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="cta-section">
+            <h2>中小企業の「AI導入の悩み」を解決する唯一の選択肢</h2>
+            <p style="font-size: 1.2rem; margin: 1rem 0;">
+                成果保証付き・助成金対応・3ヶ月伴走支援<br>
+                UnionAIが日本の中小企業にAIの力を届けます
+            </p>
+            <a href="index.html" class="cta-button">メインプレゼンへ戻る</a>
+        </div>
+    </div>
+
+    <script>
+        // Add smooth scroll animation
+        document.addEventListener('DOMContentLoaded', function() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '0';
+                        entry.target.style.transform = 'translateY(20px)';
+                        setTimeout(() => {
+                            entry.target.style.transition = 'all 0.6s ease';
+                            entry.target.style.opacity = '1';
+                            entry.target.style.transform = 'translateY(0)';
+                        }, 100);
+                    }
+                });
+            });
+
+            document.querySelectorAll('.section, .pain-card, .solution-card, .competitor-card').forEach(el => {
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>
