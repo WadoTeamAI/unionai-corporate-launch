@@ -4,7 +4,8 @@
       "WebSearch",
       "Bash(open /Users/nakaikento/250901法人/unionai_service_website.html)",
       "Bash(git init:*)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(gh auth:*)"
     ],
     "deny": [],
     "ask": []
